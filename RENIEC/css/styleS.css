@@ -1,0 +1,722 @@
+/* RENIEC Perú — hoja de estilos de la página principal */
+
+:root {
+  --rojo: #b3161f;
+  --azul: #12305a;
+  --azul-oscuro: #0c2242;
+  --fondo: #f3f5f8;
+  --papel: #ffffff;
+  --texto: #1c2733;
+  --texto-suave: #4a5766;
+  --borde: #c5cdd8;
+  --foco: #1a73e8;
+  --exito: #1b6e3c;
+  --exito-fondo: #e7f4ec;
+  --ancho: 68rem;
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-padding-top: 5rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+h1, h2, h3, p, ul {
+  margin-top: 0;
+}
+
+h1, h2 {
+  font-family: var(--serif);
+  color: var(--azul);
+  line-height: 1.15;
+}
+
+h2 {
+  margin-bottom: 1rem;
+  font-size: clamp(1.5rem, 3.2vw, 2.1rem);
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+p {
+  max-width: 65ch;
+}
+
+a {
+  color: var(--azul);
+}
+
+:focus-visible {
+  outline: 3px solid var(--foco);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -4rem;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  border: 2px solid var(--azul);
+  border-radius: 4px;
+  background: var(--papel);
+  color: var(--azul);
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 0.75rem;
+}
+
+/* Cada sección ocupa todo el ancho, pero su contenido queda centrado */
+main > section {
+  padding: clamp(3rem, 7vw, 5rem) max(1rem, calc((100% - var(--ancho)) / 2));
+}
+
+/* ---------- Encabezado ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-top: 6px solid var(--rojo);
+  border-bottom: 1px solid var(--borde);
+  background: var(--papel);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: calc(var(--ancho) + 2rem);
+  margin-inline: auto;
+  padding: 0.6rem 1rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--rojo);
+  text-decoration: none;
+}
+
+.brand__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.brand__title {
+  color: var(--azul);
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.brand__subtitle {
+  color: var(--texto-suave);
+  font-size: 0.8rem;
+}
+
+@keyframes pulso {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+
+.icon-pulse {
+  transform-origin: center;
+  animation: pulso 1.6s ease-in-out 2;
+}
+
+/* Botón de menú (móvil): se anima a "X" con aria-expanded */
+.nav-toggle {
+  display: grid;
+  place-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 1px solid var(--borde);
+  border-radius: 4px;
+  background: none;
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 1.35rem;
+  height: 2px;
+  margin: 0.15rem 0;
+  background: var(--azul);
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(0.425rem) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-0.425rem) rotate(-45deg);
+}
+
+.main-nav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  padding: 0.5rem 1rem 1rem;
+  border-bottom: 1px solid var(--borde);
+  background: var(--papel);
+}
+
+.nav-toggle[aria-expanded="true"] + .main-nav,
+.main-nav.is-open,
+.main-nav.open {
+  display: block;
+}
+
+.main-nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.main-nav a {
+  display: block;
+  padding: 0.75rem 0.25rem;
+  color: var(--texto);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.main-nav a:hover {
+  color: var(--rojo);
+  text-decoration: underline;
+  text-underline-offset: 0.35em;
+}
+
+@media (min-width: 52rem) {
+  .nav-toggle {
+    display: none;
+  }
+
+  .main-nav {
+    display: block;
+    position: static;
+    padding: 0;
+    border: 0;
+    background: none;
+  }
+
+  .main-nav ul {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .main-nav a {
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+/* ---------- Botones ---------- */
+.btn {
+  display: inline-block;
+  min-height: 2.75rem;
+  padding: 0.7rem 1.5rem;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.btn-primary {
+  background: #fff;
+  color: var(--azul);
+}
+
+.btn-primary:hover {
+  background: #dfe7f2;
+}
+
+/* ---------- Inicio (hero) ---------- */
+.hero {
+  background: var(--azul);
+  color: #fff;
+}
+
+.hero :focus-visible {
+  outline-color: #fff;
+}
+
+.hero-inner {
+  display: grid;
+  gap: 3rem;
+  align-items: center;
+}
+
+.hero h1 {
+  max-width: 20ch;
+  margin-bottom: 1.25rem;
+  color: #fff;
+  font-size: clamp(2.1rem, 5.5vw, 3.6rem);
+  font-weight: 700;
+}
+
+.hero p {
+  margin-bottom: 2rem;
+  color: #d5dfee;
+  font-size: 1.15rem;
+}
+
+@media (min-width: 52rem) {
+  .hero-inner {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+}
+
+/* Tarjeta de DNI dibujada solo con CSS: el elemento memorable de la página */
+.id-card {
+  position: relative;
+  width: min(100%, 26rem);
+  aspect-ratio: 85.6 / 54;
+  margin-inline: auto;
+  border-radius: 14px;
+  background: #f4f7fb;
+  color: var(--azul);
+  transform: rotate(-3deg);
+}
+
+.id-card__country {
+  position: absolute;
+  top: 7%;
+  left: 6%;
+  color: var(--rojo);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.id-card__chip {
+  position: absolute;
+  top: 6%;
+  right: 7%;
+  width: 13%;
+  aspect-ratio: 1.3;
+  border: 2px solid #b8923a;
+  border-radius: 6px;
+  background: #d8b45a;
+}
+
+.id-card__photo {
+  position: absolute;
+  top: 26%;
+  left: 6%;
+  width: 28%;
+  height: 48%;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #c3cfe0;
+}
+
+.id-card__photo::before,
+.id-card__photo::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  background: #8ea3c0;
+  transform: translateX(-50%);
+}
+
+.id-card__photo::before {
+  top: 18%;
+  width: 46%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+.id-card__photo::after {
+  bottom: -12%;
+  width: 84%;
+  height: 50%;
+  border-radius: 50% 50% 0 0;
+}
+
+.id-card__lines {
+  position: absolute;
+  top: 32%;
+  right: 8%;
+  left: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.line {
+  display: block;
+  height: 0.6rem;
+  border-radius: 99px;
+  background: rgba(18, 48, 90, 0.2);
+}
+
+.line--w70 { width: 70%; }
+.line--w40 { width: 40%; }
+.line--w55 { width: 55%; }
+
+.id-card__fingerprint {
+  position: absolute;
+  right: 8%;
+  bottom: 14%;
+  width: 17%;
+  height: auto;
+  color: var(--azul);
+  opacity: 0.45;
+}
+
+.id-card__label {
+  position: absolute;
+  bottom: 6%;
+  left: 6%;
+  color: var(--texto-suave);
+  font-size: 0.68rem;
+  font-weight: 500;
+}
+
+/* ---------- Servicios ---------- */
+.servicios {
+  background: var(--papel);
+}
+
+.servicios__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 2rem;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.servicio {
+  display: flex;
+  gap: 1rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--borde);
+}
+
+.servicio__icon {
+  flex: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--rojo);
+}
+
+.servicio h3 {
+  margin-bottom: 0.35rem;
+  color: var(--azul);
+}
+
+.servicio p {
+  margin: 0;
+  color: var(--texto-suave);
+}
+
+/* ---------- Sedes ---------- */
+.sedes {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+  background: var(--fondo);
+}
+
+.sedes__figure {
+  margin: 0;
+}
+
+.sedes__figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 10 / 7;
+  border-radius: 6px;
+  background: var(--borde);
+  object-fit: cover;
+}
+
+.sedes__figure figcaption {
+  margin-top: 0.6rem;
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+}
+
+@media (min-width: 56rem) {
+  .sedes {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+}
+
+/* ---------- Requisitos (acordeón) ---------- */
+.requisitos {
+  background: var(--papel);
+}
+
+.requisitos__intro {
+  margin-bottom: 2rem;
+  color: var(--texto-suave);
+}
+
+.accordion {
+  max-width: 48rem;
+  border-top: 1px solid var(--borde);
+}
+
+.accordion-item {
+  border-bottom: 1px solid var(--borde);
+}
+
+.accordion-heading {
+  margin: 0;
+}
+
+.accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  padding: 1rem 0;
+  border: 0;
+  background: none;
+  color: var(--azul);
+  font: inherit;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.accordion-header:hover {
+  color: var(--rojo);
+}
+
+/* Ícono + / − dibujado con dos barras */
+.accordion-icon {
+  position: relative;
+  flex: none;
+  width: 1rem;
+  height: 1rem;
+}
+
+.accordion-icon::before,
+.accordion-icon::after {
+  content: "";
+  position: absolute;
+  border-radius: 1px;
+  background: currentColor;
+  transition: transform 0.2s;
+}
+
+.accordion-icon::before {
+  top: calc(50% - 1px);
+  right: 0;
+  left: 0;
+  height: 2px;
+}
+
+.accordion-icon::after {
+  top: 0;
+  bottom: 0;
+  left: calc(50% - 1px);
+  width: 2px;
+}
+
+.accordion-header[aria-expanded="true"] .accordion-icon::after {
+  transform: scaleY(0);
+}
+
+.accordion-content {
+  display: none;
+  padding: 0 0 1.25rem;
+}
+
+.accordion-heading:has(> [aria-expanded="true"]) + .accordion-content,
+.accordion-item.is-open .accordion-content,
+.accordion-item.open .accordion-content,
+.accordion-item.active .accordion-content,
+.accordion-content.open {
+  display: block;
+}
+
+.accordion-content ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.accordion-content li + li {
+  margin-top: 0.4rem;
+}
+
+/* ---------- Agendamiento de cita ---------- */
+.cita {
+  display: grid;
+  gap: 2rem;
+  align-items: start;
+  background: var(--fondo);
+}
+
+.cita__intro p {
+  color: var(--texto-suave);
+}
+
+.cita form {
+  display: grid;
+  gap: 1rem;
+  padding: 1.5rem;
+  border: 1px solid var(--borde);
+  border-top: 4px solid var(--rojo);
+  border-radius: 6px;
+  background: var(--papel);
+}
+
+.cita label {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.cita input,
+.cita select {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--borde);
+  border-radius: 4px;
+  background: var(--papel);
+  color: var(--texto);
+  font: inherit;
+  font-weight: 400;
+}
+
+.cita input:focus-visible,
+.cita select:focus-visible {
+  border-color: var(--azul);
+  outline-offset: 1px;
+}
+
+.cita input:user-invalid,
+.cita select:user-invalid {
+  border-color: var(--rojo);
+}
+
+.cita button {
+  min-height: 2.75rem;
+  padding: 0 1.25rem;
+  border: 2px solid var(--azul);
+  border-radius: 4px;
+  background: var(--azul);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.cita button:hover {
+  border-color: var(--azul-oscuro);
+  background: var(--azul-oscuro);
+}
+
+/* Confirmación: oculta hasta que el script agrega la clase .mostrar */
+.mensaje-exito {
+  display: none;
+  margin: 0;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid var(--exito);
+  border-radius: 4px;
+  background: var(--exito-fondo);
+  color: var(--exito);
+  font-weight: 600;
+}
+
+.mensaje-exito.mostrar {
+  display: block;
+  animation: aparecer 0.4s ease-out both;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(0.5rem); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (min-width: 56rem) {
+  .cita {
+    grid-template-columns: 1fr 1.1fr;
+    gap: 4rem;
+  }
+
+  .mensaje-exito {
+    grid-column: 2;
+  }
+}
+
+/* ---------- Pie de página ---------- */
+.site-footer {
+  padding: 2rem max(1rem, calc((100% - var(--ancho)) / 2));
+  background: var(--azul-oscuro);
+  color: #cfd9e8;
+  font-size: 0.9rem;
+}
+
+.site-footer p {
+  max-width: none;
+  margin: 0 0 0.35rem;
+}
+
+/* ---------- Movimiento reducido ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .icon-pulse,
+  .mensaje-exito.mostrar {
+    animation: none;
+  }
+
+  .btn,
+  .nav-toggle span,
+  .accordion-icon::before,
+  .accordion-icon::after,
+  .cita button {
+    transition: none;
+  }
+}
