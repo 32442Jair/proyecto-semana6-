@@ -1,0 +1,410 @@
+/* ==========================================================================
+   RENIEC Perú — estilos.css
+   Páginas de autenticación (login / registro). Reutilizable en el resto del sitio.
+   ========================================================================== */
+
+/* ---------- Variables ---------- */
+:root {
+  --azul-900: #0f2a4d;
+  --azul-700: #17407a;
+  --azul-500: #2563b0;
+  --rojo: #c8102e;          /* rojo de la bandera, solo como acento */
+  --papel: #f4f6f9;
+  --blanco: #ffffff;
+  --tinta: #1b2433;
+  --tinta-suave: #5a6579;
+  --borde: #cfd6e2;
+  --ok-fondo: #e6f4ec;
+  --ok-texto: #14683a;
+  --error-fondo: #fdebed;
+  --error-texto: #9d1229;
+
+  --fuente-texto: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --fuente-titulo: Georgia, "Times New Roman", serif;
+
+  --radio: 6px;
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  font-family: var(--fuente-texto);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--tinta);
+  background: var(--papel);
+}
+
+a {
+  color: var(--azul-500);
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--azul-700);
+}
+
+:focus-visible {
+  outline: 3px solid var(--azul-500);
+  outline-offset: 2px;
+}
+
+/* ---------- Estructura de autenticación ---------- */
+.auth-page {
+  display: grid;
+  grid-template-columns: minmax(320px, 5fr) 6fr;
+  min-height: 100vh;
+}
+
+/* ---------- Panel lateral ---------- */
+.auth-side {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: clamp(2rem, 5vw, 4rem);
+  color: #e8eef7;
+  background-color: var(--azul-900);
+  /* Trama fina tipo documento de identidad */
+  background-image:
+    repeating-radial-gradient(
+      circle at 0% 100%,
+      rgba(255, 255, 255, 0.07) 0 1px,
+      transparent 1px 11px
+    ),
+    repeating-radial-gradient(
+      circle at 100% 0%,
+      rgba(255, 255, 255, 0.05) 0 1px,
+      transparent 1px 9px
+    );
+  overflow: hidden;
+}
+
+/* Franja roja en el borde, guiño a la bandera */
+.auth-side::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 6px;
+  background: var(--rojo);
+}
+
+.auth-side > div {
+  position: relative;
+  max-width: 30rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: clamp(2rem, 8vh, 5rem);
+  font-weight: 600;
+  font-size: 1.125rem;
+  letter-spacing: 0.01em;
+  color: var(--blanco);
+}
+
+.brand-logo {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-family: var(--fuente-titulo);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--azul-900);
+  background: var(--blanco);
+  border-bottom: 4px solid var(--rojo);
+  border-radius: 4px 4px 0 0;
+}
+
+.auth-side h2 {
+  margin: 0 0 1rem;
+  font-family: var(--fuente-titulo);
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--blanco);
+}
+
+.auth-side p {
+  margin: 0 0 1.75rem;
+  max-width: 28rem;
+  color: #c3cfe2;
+}
+
+.auth-side ul {
+  display: grid;
+  gap: 0.85rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.auth-side li {
+  position: relative;
+  padding-left: 2rem;
+  color: #e8eef7;
+}
+
+/* Marca de verificación dibujada con bordes */
+.auth-side li::before {
+  content: "";
+  position: absolute;
+  left: 0.35rem;
+  top: 0.3rem;
+  width: 0.4rem;
+  height: 0.75rem;
+  border-right: 2px solid var(--blanco);
+  border-bottom: 2px solid var(--blanco);
+  transform: rotate(40deg);
+}
+
+.auth-side .footnote {
+  position: relative;
+  margin: 0;
+  font-size: 0.8125rem;
+  color: #93a4c0;
+}
+
+/* ---------- Lado del formulario ---------- */
+.auth-form-side {
+  display: grid;
+  place-items: center;
+  padding: clamp(1.5rem, 4vw, 3rem);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 26rem;
+  padding: clamp(1.75rem, 4vw, 2.5rem);
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  border-top: 4px solid var(--azul-700);
+  border-radius: var(--radio);
+  box-shadow: 0 12px 32px -16px rgba(15, 42, 77, 0.35);
+}
+
+.auth-card h1 {
+  margin: 0 0 0.35rem;
+  font-family: var(--fuente-titulo);
+  font-size: 1.75rem;
+  line-height: 1.2;
+  color: var(--azul-900);
+}
+
+.auth-card .subtitle {
+  margin: 0 0 1.75rem;
+  color: var(--tinta-suave);
+}
+
+/* ---------- Formulario ---------- */
+form {
+  display: grid;
+  gap: 1.1rem;
+}
+
+label {
+  display: grid;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--tinta);
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  font: inherit;
+  font-weight: 400;
+  color: var(--tinta);
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #9aa5b8;
+}
+
+input:hover,
+select:hover,
+textarea:hover {
+  border-color: #aab5c8;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--azul-500);
+  box-shadow: 0 0 0 3px rgba(37, 99, 176, 0.25);
+}
+
+/* Campo inválido solo después de que el usuario lo toca */
+input:user-invalid,
+select:user-invalid,
+textarea:user-invalid {
+  border-color: var(--rojo);
+}
+
+button,
+.btn {
+  display: inline-block;
+  width: 100%;
+  margin-top: 0.4rem;
+  padding: 0.8rem 1rem;
+  font: inherit;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  color: var(--blanco);
+  background: var(--azul-700);
+  border: 1px solid var(--azul-700);
+  border-radius: var(--radio);
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+button:hover,
+.btn:hover {
+  background: var(--azul-900);
+  border-color: var(--azul-900);
+  color: var(--blanco);
+}
+
+button:active,
+.btn:active {
+  transform: translateY(1px);
+}
+
+button:disabled {
+  background: #8798b3;
+  border-color: #8798b3;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ---------- Mensajes ---------- */
+.auth-message {
+  display: none;
+  margin-top: 1.25rem;
+  padding: 0.75rem 0.95rem;
+  font-size: 0.925rem;
+  border-left: 4px solid transparent;
+  border-radius: var(--radio);
+}
+
+.auth-message.show {
+  display: block;
+}
+
+.auth-message.ok {
+  color: var(--ok-texto);
+  background: var(--ok-fondo);
+  border-left-color: var(--ok-texto);
+}
+
+.auth-message.error {
+  color: var(--error-texto);
+  background: var(--error-fondo);
+  border-left-color: var(--rojo);
+}
+
+/* ---------- Separador y enlace alterno ---------- */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin: 1.75rem 0 1.25rem;
+  font-size: 0.85rem;
+  color: var(--tinta-suave);
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--borde);
+}
+
+.auth-alt {
+  margin: 0;
+  text-align: center;
+  color: var(--tinta-suave);
+}
+
+.auth-alt a {
+  font-weight: 600;
+}
+
+/* ---------- Tablet y móvil ---------- */
+@media (max-width: 860px) {
+  .auth-page {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+
+  .auth-side {
+    gap: 1.25rem;
+    padding: 1.5rem 1.25rem 1.75rem;
+  }
+
+  /* Franja roja pasa al borde inferior */
+  .auth-side::after {
+    top: auto;
+    left: 0;
+    width: auto;
+    height: 5px;
+  }
+
+  .brand {
+    margin-bottom: 1.25rem;
+  }
+
+  /* En pantallas pequeñas se oculta el detalle para ir directo al formulario */
+  .auth-side p,
+  .auth-side ul,
+  .auth-side .footnote {
+    display: none;
+  }
+
+  .auth-side h2 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+
+  .auth-form-side {
+    align-items: start;
+    padding: 1.5rem 1rem 2.5rem;
+  }
+}
+
+/* ---------- Preferencias del sistema ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+}

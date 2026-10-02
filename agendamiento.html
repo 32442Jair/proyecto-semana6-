@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RENIEC Perú | Trámites de identidad en línea</title>
+  <meta name="description" content="Agenda tu cita de DNI, solicita partidas y consulta los requisitos de cada trámite de identidad con RENIEC.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styleS.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#inicio">
+        <svg class="brand__icon icon-pulse" viewBox="0 0 64 64" width="34" height="34" role="img" aria-label="Símbolo de huella digital de RENIEC">
+          <g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round">
+            <path d="M32 9 C16 9 8 22 8 36 C8 48 16 57 27 60"/>
+            <path d="M32 16 C20 16 14 26 14 36 C14 46 20 53 29 56"/>
+            <path d="M32 23 C25 23 21 29 21 36 C21 43 25 48 31 51"/>
+            <path d="M32 30 C29 30 28 33 28 36"/>
+            <path d="M40 12 C50 19 54 29 52 41 C50 51 43 58 34 61"/>
+          </g>
+        </svg>
+        <span class="brand__text">
+          <span class="brand__title">RENIEC</span>
+          <span class="brand__subtitle">Identidad y estado civil</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="Abrir menú de navegación">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="main-nav" id="mainNav" aria-label="Navegación principal">
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#sedes">Sedes</a></li>
+          <li><a href="#requisitos">Requisitos</a></li>
+          <li><a href="#cita">Agendar cita</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <section id="inicio" class="hero">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <h1>Un documento que abre puertas en todo el país.</h1>
+          <p>Agenda tu cita, revisa qué llevar y resuelve tu trámite de DNI o partidas sin perder el día en una cola.</p>
+          <a class="btn btn-primary" href="#cita">Agendar una cita</a>
+        </div>
+
+        <div class="id-card" aria-hidden="true">
+          <span class="id-card__country">República del Perú</span>
+          <div class="id-card__chip"></div>
+          <div class="id-card__photo"></div>
+          <div class="id-card__lines">
+            <span class="line line--w70"></span>
+            <span class="line line--w40"></span>
+            <span class="line line--w55"></span>
+          </div>
+          <svg class="id-card__fingerprint" viewBox="0 0 64 64">
+            <g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round">
+              <path d="M32 9 C16 9 8 22 8 36 C8 48 16 57 27 60"/>
+              <path d="M32 16 C20 16 14 26 14 36 C14 46 20 53 29 56"/>
+              <path d="M32 23 C25 23 21 29 21 36 C21 43 25 48 31 51"/>
+              <path d="M32 30 C29 30 28 33 28 36"/>
+              <path d="M40 12 C50 19 54 29 52 41 C50 51 43 58 34 61"/>
+            </g>
+          </svg>
+          <span class="id-card__label">DNI · Documento Nacional de Identidad</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="servicios" class="servicios">
+      <h2>Qué puedes resolver aquí</h2>
+      <ul class="servicios__list">
+        <li class="servicio">
+          <svg class="servicio__icon" viewBox="0 0 40 40" aria-hidden="true">
+            <rect x="6" y="8" width="28" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="2"/>
+            <circle cx="15" cy="18" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M9 27c1.5-4 4-5.5 6-5.5s4.5 1.5 6 5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M23 15h7M23 20h7M23 25h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <div>
+            <h3>Trámite de DNI</h3>
+            <p>Primera vez, duplicado o renovación: agenda tu cita y llega con lo justo.</p>
+          </div>
+        </li>
+        <li class="servicio">
+          <svg class="servicio__icon" viewBox="0 0 40 40" aria-hidden="true">
+            <path d="M11 6h14l6 6v22a2 2 0 0 1-2 2H11a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M25 6v6h6" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M13 22h14M13 27h14M13 17h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <div>
+            <h3>Partidas de nacimiento y matrimonio</h3>
+            <p>Solicita tu partida para un trámite personal, laboral o legal.</p>
+          </div>
+        </li>
+        <li class="servicio">
+          <svg class="servicio__icon" viewBox="0 0 40 40" aria-hidden="true">
+            <circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M20 12v8l6 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <div>
+            <h3>Requisitos por trámite</h3>
+            <p>Revisa antes de salir de casa qué documentos necesitas presentar.</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section id="sedes" class="sedes">
+      <div class="sedes__text">
+        <h2>Presencia a nivel nacional</h2>
+        <p>Contamos con agencias y oficinas registrales en las principales ciudades del país, además de plataformas virtuales para los trámites que no requieren presencia física.</p>
+      </div>
+      <figure class="sedes__figure">
+        <picture>
+          <source media="(min-width: 900px)" srcset="https://picsum.photos/id/1074/1200/800 1200w, https://picsum.photos/id/1074/900/600 900w" sizes="46vw">
+          <img
+            src="https://picsum.photos/id/1074/600/420"
+            srcset="https://picsum.photos/id/1074/600/420 600w, https://picsum.photos/id/1074/900/630 900w, https://picsum.photos/id/1074/1200/840 1200w"
+            sizes="(min-width: 900px) 46vw, 100vw"
+            alt="Agencia de atención al ciudadano de RENIEC con personas siendo atendidas en ventanilla"
+            loading="lazy" width="600" height="420">
+        </picture>
+        <figcaption>Agencia RENIEC — atención presencial en Huancayo</figcaption>
+      </figure>
+    </section>
+
+    <section id="requisitos" class="requisitos">
+      <h2>Requisitos por trámite</h2>
+      <p class="requisitos__intro">Elige tu trámite para ver la lista de documentos que debes presentar.</p>
+
+      <div class="accordion">
+        <div class="accordion-item">
+          <h3 class="accordion-heading">
+            <button class="accordion-header" type="button" aria-expanded="false" aria-controls="panel-dni-nuevo" id="acc-dni-nuevo">
+              DNI por primera vez
+              <span class="accordion-icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="accordion-content" id="panel-dni-nuevo" role="region" aria-labelledby="acc-dni-nuevo">
+            <ul>
+              <li>Partida de nacimiento original y una copia.</li>
+              <li>Pago por derecho de trámite en agencia autorizada.</li>
+              <li>Presencia del titular desde los 17 años y 6 meses.</li>
+              <li>Menores de edad: acompañados de padre, madre o tutor legal.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-heading">
+            <button class="accordion-header" type="button" aria-expanded="false" aria-controls="panel-dni-duplicado" id="acc-dni-duplicado">
+              Duplicado de DNI
+              <span class="accordion-icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="accordion-content" id="panel-dni-duplicado" role="region" aria-labelledby="acc-dni-duplicado">
+            <ul>
+              <li>Denuncia policial en caso de robo o pérdida (opcional, no excluyente).</li>
+              <li>Pago por derecho de duplicado.</li>
+              <li>Presencia del titular para verificación de identidad.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-heading">
+            <button class="accordion-header" type="button" aria-expanded="false" aria-controls="panel-partida-nac" id="acc-partida-nac">
+              Partida de nacimiento
+              <span class="accordion-icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="accordion-content" id="panel-partida-nac" role="region" aria-labelledby="acc-partida-nac">
+            <ul>
+              <li>DNI del solicitante.</li>
+              <li>Datos completos de la persona inscrita: nombres, fecha y lugar de nacimiento.</li>
+              <li>Pago por derecho de expedición.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-heading">
+            <button class="accordion-header" type="button" aria-expanded="false" aria-controls="panel-partida-mat" id="acc-partida-mat">
+              Partida de matrimonio
+              <span class="accordion-icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="accordion-content" id="panel-partida-mat" role="region" aria-labelledby="acc-partida-mat">
+            <ul>
+              <li>DNI del solicitante.</li>
+              <li>Nombres completos de ambos cónyuges y fecha aproximada del matrimonio.</li>
+              <li>Pago por derecho de expedición.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cita" class="cita">
+      <div class="cita__intro">
+        <h2>Agendamiento de cita</h2>
+        <p>Completa tus datos y elige la sede y el trámite que necesitas realizar.</p>
+      </div>
+
+      <!-- Formulario -->
+      <form id="form-cita">
+        <label>Nombre completo
+          <input type="text" name="nombre" required>
+        </label>
+        <label>DNI (8 dígitos)
+          <input type="text" name="dni" required pattern="\d{8}" maxlength="8">
+        </label>
+        <label>Tipo de trámite
+          <select name="tipo_tramite" required>
+            <option value="">Seleccione…</option>
+            <option>DNI azul</option>
+            <option>Renovación DNI</option>
+            <option>Certificado</option>
+            <option>Cambio de domicilio</option>
+          </select>
+        </label>
+        <label>Sede
+          <select name="sede" required>
+            <option value="">Seleccione…</option>
+            <option>Sede Huancayo</option>
+            <option>Sede Lima</option>
+            <option>Sede Cusco</option>
+          </select>
+        </label>
+        <button type="submit">Agendar cita</button>
+      </form>
+
+      <!-- Menú del cliente: FUERA del form -->
+      <nav class="menu-cliente">
+        <a href="registro.html">Agendar otra cita</a>
+        <a href="consulta.html">Ver mis citas</a>
+        <button type="button" id="btn-salir">Cerrar sesión</button>
+      </nav>
+
+      <!-- Mensaje de éxito (reutiliza animación Semana 5) -->
+      <p id="mensaje-exito" class="mensaje-exito"></p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p>RENIEC Perú — Registro Nacional de Identificación y Estado Civil.</p>
+      <p>Central telefónica 315-2700 · Proyecto académico, Diseño Web NRC 30239.</p>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { guardarRegistro } from './js/registro/registro.js';
+    import { usuarioActivo, cerrarSesion } from './js/auth/auth.js';
+
+    // 1. Verificación de sesión
+    if (!usuarioActivo()) {
+      window.location.href = 'login.html';
+    }
+
+    // 2. Envío del formulario
+    const formCita = document.getElementById('form-cita');
+    if (formCita) {
+      formCita.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const f = e.target;
+
+        const datos = {
+          nombre:       f.nombre.value.trim(),
+          dni:          f.dni.value.trim(),
+          tipo_tramite: f.tipo_tramite.value,
+          sede:         f.sede.value
+        };
+
+        if (!datos.nombre || !/^\d{8}$/.test(datos.dni) ||
+            !datos.tipo_tramite || !datos.sede) {
+          alert('Verifica los campos: el DNI debe tener 8 dígitos.');
+          return;
+        }
+
+        try {
+          const codigo = await guardarRegistro(datos);
+          const msg = document.getElementById('mensaje-exito');
+          msg.textContent = 'Cita agendada. Código: ' + codigo;
+          msg.classList.add('mostrar');
+          f.reset();
+        } catch (err) {
+          alert('Error al guardar: ' + err.message);
+        }
+      });
+    }
+
+    // 3. Cerrar sesión
+    document.getElementById('btn-salir')?.addEventListener('click', () => {
+      cerrarSesion();
+      window.location.href = 'login.html';
+    });
+  </script>
+
+</body>
+</html>

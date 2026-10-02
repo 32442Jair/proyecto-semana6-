@@ -1,0 +1,706 @@
+/* ==========================================================
+   RENIEC Perú — Trámites de identidad
+   Archivo: css/styleS.css
+   Fuentes: Source Serif 4 (títulos) + IBM Plex Sans (texto)
+   ========================================================== */
+
+/* ---------- 1. Variables ---------- */
+:root {
+  --tinta: #12284a;          /* azul marino: texto y encabezados */
+  --dni: #2f5f9e;            /* azul DNI: estructura, íconos */
+  --dni-claro: #dce7f5;      /* azul suave: fondos de apoyo */
+  --papel: #f3f6fa;          /* fondo general */
+  --blanco: #ffffff;
+  --rojo: #c8102e;           /* rojo bandera: única acción principal */
+  --rojo-oscuro: #9f0c24;
+  --gris: #55627a;           /* texto secundario */
+  --linea: #c9d4e3;
+  --exito: #1f7a4d;
+
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+
+  --radio: 10px;
+  --ancho: 1120px;
+  --espacio: clamp(3rem, 7vw, 5.5rem);
+}
+
+/* ---------- 2. Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--tinta);
+  background: var(--papel);
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+h1, h2, h3 {
+  font-family: var(--serif);
+  line-height: 1.15;
+  margin: 0 0 0.6em;
+  color: var(--tinta);
+}
+
+h1 { font-size: clamp(2.2rem, 5.5vw, 3.6rem); font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: clamp(1.6rem, 3.4vw, 2.2rem); font-weight: 600; }
+h3 { font-size: 1.15rem; font-weight: 600; }
+
+p { margin: 0 0 1em; max-width: 62ch; }
+
+a { color: var(--dni); }
+
+:focus-visible {
+  outline: 3px solid var(--rojo);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Enlace para saltar al contenido */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  background: var(--tinta);
+  color: var(--blanco);
+  border-radius: 0 0 var(--radio) var(--radio);
+  text-decoration: none;
+}
+.skip-link:focus { top: 0; }
+
+/* Secciones: mismo ancho y ritmo vertical */
+.servicios,
+.sedes,
+.requisitos,
+.cita {
+  width: min(100% - 2.5rem, var(--ancho));
+  margin-inline: auto;
+  padding-block: var(--espacio);
+}
+
+/* ---------- 3. Encabezado ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--blanco);
+  border-bottom: 1px solid var(--linea);
+}
+
+.header-inner {
+  width: min(100% - 2.5rem, var(--ancho));
+  margin-inline: auto;
+  min-height: 4.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  position: relative;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  text-decoration: none;
+  color: var(--dni);
+}
+
+.brand__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.brand__title {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.35rem;
+  color: var(--tinta);
+  letter-spacing: 0.02em;
+}
+
+.brand__subtitle {
+  font-size: 0.78rem;
+  color: var(--gris);
+}
+
+/* La huella late un par de veces al cargar la página */
+.icon-pulse {
+  animation: latido 2.4s ease-in-out 0.6s 2;
+  transform-origin: center;
+}
+
+@keyframes latido {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.12); }
+}
+
+/* Navegación */
+.main-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 0.25rem;
+}
+
+.main-nav a {
+  display: block;
+  padding: 0.55rem 0.9rem;
+  border-radius: 6px;
+  color: var(--tinta);
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.main-nav a:hover {
+  background: var(--dni-claro);
+  color: var(--dni);
+}
+
+/* Botón hamburguesa (solo móvil) */
+.nav-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--linea);
+  border-radius: 8px;
+  background: var(--blanco);
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--tinta);
+  border-radius: 2px;
+  transition: transform 0.25s, opacity 0.2s;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ---------- 4. Botones ---------- */
+.btn,
+button[type="submit"] {
+  display: inline-block;
+  font: inherit;
+  font-weight: 600;
+  padding: 0.85rem 1.6rem;
+  border: 0;
+  border-radius: var(--radio);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s, transform 0.15s;
+}
+
+.btn-primary,
+button[type="submit"] {
+  background: var(--rojo);
+  color: var(--blanco);
+}
+
+.btn-primary:hover,
+button[type="submit"]:hover {
+  background: var(--rojo-oscuro);
+}
+
+.btn-primary:active,
+button[type="submit"]:active {
+  transform: translateY(1px);
+}
+
+/* ---------- 5. Héroe ---------- */
+.hero {
+  background: var(--tinta);
+  color: var(--blanco);
+  overflow: hidden;
+}
+
+.hero-inner {
+  width: min(100% - 2.5rem, var(--ancho));
+  margin-inline: auto;
+  padding-block: clamp(3rem, 8vw, 6rem);
+  display: grid;
+  gap: 3rem;
+  align-items: center;
+}
+
+.hero-copy h1 {
+  color: var(--blanco);
+  max-width: 14ch;
+}
+
+.hero-copy p {
+  font-size: 1.15rem;
+  color: #d3dff0;
+  margin-bottom: 1.8rem;
+}
+
+/* Tarjeta DNI — el elemento memorable de la página */
+.id-card {
+  position: relative;
+  width: min(100%, 380px);
+  aspect-ratio: 1.586 / 1;
+  justify-self: center;
+  padding: 1.1rem 1.2rem;
+  border-radius: 16px;
+  background: var(--dni-claro);
+  color: var(--dni);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.35);
+  transform: rotate(-3deg);
+  animation: entrada-tarjeta 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes entrada-tarjeta {
+  from { opacity: 0; transform: translateY(30px) rotate(-8deg); }
+  to   { opacity: 1; transform: translateY(0) rotate(-3deg); }
+}
+
+.id-card__country {
+  display: block;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--tinta);
+}
+
+.id-card__chip {
+  position: absolute;
+  top: 3.1rem;
+  left: 1.2rem;
+  width: 44px;
+  height: 34px;
+  border-radius: 6px;
+  background: #d9b45a;
+  border: 1px solid #b8923a;
+}
+
+.id-card__photo {
+  position: absolute;
+  top: 3.1rem;
+  right: 1.2rem;
+  width: 28%;
+  aspect-ratio: 3 / 4;
+  border-radius: 6px;
+  background: var(--blanco);
+  border: 2px solid var(--dni);
+}
+
+.id-card__lines {
+  position: absolute;
+  left: 1.2rem;
+  bottom: 3.3rem;
+  width: 55%;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.id-card .line {
+  display: block;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--dni);
+  opacity: 0.55;
+}
+.id-card .line--w70 { width: 70%; }
+.id-card .line--w40 { width: 40%; }
+.id-card .line--w55 { width: 55%; }
+
+.id-card__fingerprint {
+  position: absolute;
+  right: 1.2rem;
+  bottom: 2.4rem;
+  width: 22%;
+  color: var(--dni);
+  opacity: 0.8;
+}
+
+.id-card__label {
+  position: absolute;
+  left: 1.2rem;
+  right: 1.2rem;
+  bottom: 0.9rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--tinta);
+}
+
+/* ---------- 6. Servicios ---------- */
+.servicios__list {
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.servicio {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1.4rem;
+  background: var(--blanco);
+  border: 1px solid var(--linea);
+  border-left: 5px solid var(--dni);
+  border-radius: var(--radio);
+}
+
+.servicio__icon {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  color: var(--dni);
+}
+
+.servicio h3 { margin-bottom: 0.3em; }
+.servicio p  { margin: 0; color: var(--gris); }
+
+/* ---------- 7. Sedes ---------- */
+.sedes {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+
+.sedes__figure {
+  margin: 0;
+}
+
+.sedes__figure img {
+  width: 100%;
+  border-radius: var(--radio);
+  background: var(--dni-claro);
+}
+
+.sedes__figure figcaption {
+  margin-top: 0.6rem;
+  font-size: 0.9rem;
+  color: var(--gris);
+}
+
+/* ---------- 8. Requisitos (acordeón) ---------- */
+.requisitos {
+  border-top: 1px solid var(--linea);
+}
+
+.requisitos__intro {
+  color: var(--gris);
+  margin-bottom: 1.8rem;
+}
+
+.accordion {
+  max-width: 760px;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.accordion-item {
+  background: var(--blanco);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  overflow: hidden;
+}
+
+.accordion-heading {
+  margin: 0;
+  font-size: inherit;
+}
+
+.accordion-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.05rem 1.25rem;
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--tinta);
+  text-align: left;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.accordion-header:hover {
+  background: var(--papel);
+}
+
+.accordion-header[aria-expanded="true"] {
+  background: var(--dni-claro);
+}
+
+/* Ícono + / − dibujado con CSS */
+.accordion-icon {
+  position: relative;
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.accordion-icon::before,
+.accordion-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--dni);
+  border-radius: 2px;
+  transition: transform 0.25s;
+}
+
+.accordion-icon::after { transform: rotate(90deg); }
+
+.accordion-header[aria-expanded="true"] .accordion-icon::after {
+  transform: rotate(0deg);
+}
+
+/* Panel: se abre con aria-expanded="true" en el botón (sin JS extra de clases) */
+.accordion-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+
+.accordion-content > ul {
+  min-height: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0 1.25rem 0 2.6rem;
+}
+
+.accordion-item:has(.accordion-header[aria-expanded="true"]) .accordion-content {
+  grid-template-rows: 1fr;
+}
+
+.accordion-item:has(.accordion-header[aria-expanded="true"]) .accordion-content > ul {
+  padding-block: 1rem 1.2rem;
+}
+
+.accordion-content li {
+  margin-bottom: 0.45rem;
+  color: var(--gris);
+}
+
+/* ---------- 9. Agendar cita ---------- */
+.cita {
+  border-top: 1px solid var(--linea);
+}
+
+.cita__intro p {
+  color: var(--gris);
+}
+
+#form-cita {
+  max-width: 560px;
+  display: grid;
+  gap: 1.1rem;
+  padding: clamp(1.25rem, 4vw, 2rem);
+  background: var(--blanco);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+}
+
+#form-cita label {
+  display: grid;
+  gap: 0.4rem;
+  font-weight: 500;
+}
+
+#form-cita input,
+#form-cita select {
+  width: 100%;
+  font: inherit;
+  padding: 0.7rem 0.85rem;
+  color: var(--tinta);
+  background: var(--papel);
+  border: 1.5px solid var(--linea);
+  border-radius: 8px;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+#form-cita input:focus,
+#form-cita select:focus {
+  outline: none;
+  border-color: var(--dni);
+  background: var(--blanco);
+  box-shadow: 0 0 0 3px var(--dni-claro);
+}
+
+#form-cita input:user-invalid,
+#form-cita select:user-invalid {
+  border-color: var(--rojo);
+}
+
+#form-cita button[type="submit"] {
+  justify-self: start;
+  margin-top: 0.4rem;
+}
+
+/* Menú del cliente (fuera del formulario) */
+.menu-cliente {
+  max-width: 560px;
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  align-items: center;
+}
+
+.menu-cliente a {
+  font-weight: 500;
+}
+
+.menu-cliente button {
+  margin-left: auto;
+  font: inherit;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  color: var(--tinta);
+  background: transparent;
+  border: 1.5px solid var(--tinta);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.menu-cliente button:hover {
+  background: var(--tinta);
+  color: var(--blanco);
+}
+
+/* Mensaje de éxito (animación de la Semana 5) */
+.mensaje-exito {
+  max-width: 560px;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  font-weight: 600;
+  color: var(--exito);
+  background: #e4f4ec;
+  border-left: 5px solid var(--exito);
+  border-radius: 8px;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transform: translateY(-8px);
+}
+
+.mensaje-exito.mostrar {
+  padding: 1rem 1.25rem;
+  opacity: 1;
+  max-height: 10rem;
+  transform: translateY(0);
+  animation: aparecer 0.5s ease-out;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- 10. Pie de página ---------- */
+.site-footer {
+  background: var(--tinta);
+  color: #d3dff0;
+  font-size: 0.9rem;
+}
+
+.site-footer__inner {
+  width: min(100% - 2.5rem, var(--ancho));
+  margin-inline: auto;
+  padding-block: 2rem;
+}
+
+.site-footer p {
+  margin: 0 0 0.3rem;
+  max-width: none;
+}
+
+/* ---------- 11. Responsive ---------- */
+
+/* Móvil: menú desplegable */
+@media (max-width: 779px) {
+  .nav-toggle { display: flex; }
+
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: -1.25rem;
+    right: -1.25rem;
+    background: var(--blanco);
+    border-bottom: 1px solid var(--linea);
+    padding: 0.5rem 1.25rem 1rem;
+    box-shadow: 0 12px 20px rgba(18, 40, 74, 0.1);
+  }
+
+  .nav-toggle[aria-expanded="true"] ~ .main-nav { display: block; }
+
+  .main-nav ul {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .main-nav a { padding: 0.8rem 0.5rem; }
+
+  .id-card { transform: rotate(-2deg); }
+}
+
+/* Tablet en adelante */
+@media (min-width: 780px) {
+  .servicios__list { grid-template-columns: repeat(3, 1fr); }
+  .servicio { flex-direction: column; }
+}
+
+/* Escritorio */
+@media (min-width: 900px) {
+  .hero-inner { grid-template-columns: 1.1fr 0.9fr; }
+  .sedes { grid-template-columns: 1fr 1.1fr; gap: 3.5rem; }
+}
+
+/* ---------- 12. Accesibilidad: menos movimiento ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

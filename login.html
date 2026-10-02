@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar sesión — RENIEC Perú</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  
+</head>
+<body class="auth-page">
+
+  <!-- Panel lateral -->
+  <aside class="auth-side">
+    <div>
+      <div class="brand">
+        <span class="brand-logo">R</span>
+        RENIEC Perú
+      </div>
+      <h2>Gestiona tus citas en línea</h2>
+      <p>Accede con tu cuenta para agendar y dar seguimiento a tus trámites registrales.</p>
+      <ul>
+        <li>Agenda tu cita en minutos</li>
+        <li>Consulta el estado de tu trámite</li>
+        <li>Recibe tu código de seguimiento</li>
+      </ul>
+    </div>
+    <p class="footnote">© 2026 RENIEC Perú — Proyecto académico</p>
+  </aside>
+
+  <!-- Formulario de login -->
+  <main class="auth-form-side">
+    <div class="auth-card">
+      <h1>Iniciar sesión</h1>
+      <p class="subtitle">Ingresa tus credenciales para continuar.</p>
+
+      <form id="form-login" novalidate>
+        <label>Correo electrónico
+          <input type="email" name="correo" required placeholder="tucorreo@ejemplo.com" autocomplete="email">
+        </label>
+        <label>Contraseña
+          <input type="password" name="contrasena" required placeholder="••••••••" autocomplete="current-password">
+        </label>
+        <button type="submit">Entrar</button>
+      </form>
+
+      <div id="msg-login" class="auth-message"></div>
+
+      <div class="auth-divider">o</div>
+
+      <p class="auth-alt">
+        ¿No tienes cuenta? <a href="registro.html">Crear cuenta nueva</a>
+      </p>
+    </div>
+  </main>
+
+  <script type="module">
+    import { iniciarSesion } from './js/auth/auth.js';
+
+    const form  = document.getElementById('form-login');
+    const msg   = document.getElementById('msg-login');
+    const btn   = form.querySelector('button[type="submit"]');
+
+    function mostrar(clase, texto) {
+      msg.className = 'auth-message show ' + clase;
+      msg.textContent = texto;
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const correo     = form.correo.value.trim();
+      const contrasena = form.contrasena.value;
+
+      if (!correo || !contrasena) {
+        mostrar('error', 'Completa todos los campos.');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Verificando…';
+
+      try {
+        const usuario = await iniciarSesion(correo, contrasena);
+        if (usuario) {
+          mostrar('ok', 'Bienvenido, ' + usuario.nombre + '. Redirigiendo…');
+          setTimeout(() => {
+            window.location.href = 'agendamiento.html'; // ← tu página del formulario
+          }, 700);
+        } else {
+          mostrar('error', 'Correo o contraseña incorrectos.');
+        }
+      } catch (err) {
+        mostrar('error', 'Error al iniciar sesión: ' + err.message);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Entrar';
+      }
+    });
+  </script>
+</body>
+</html>

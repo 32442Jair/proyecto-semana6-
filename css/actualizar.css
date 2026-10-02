@@ -1,0 +1,142 @@
+/* ============================
+   ACTUALIZAR — Editar cita
+   ============================ */
+:root {
+  --color-primario: #0d3b66;
+  --color-secundario: #1d5fa8;
+  --color-acento: #2e7ac9;
+  --color-fondo: #f4f7fb;
+  --color-texto: #0f172a;
+  --color-texto-suave: #64748b;
+  --color-borde: #cbd5e1;
+  --radio: 12px;
+  --sombra-card: 0 20px 50px rgba(13, 59, 102, 0.12);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--color-fondo);
+  color: var(--color-texto);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+body > h1 {
+  color: var(--color-primario);
+  font-size: 1.6rem;
+  margin: 0 0 24px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+#form-act {
+  width: 100%;
+  max-width: 520px;
+  background: #fff;
+  padding: 36px 36px 32px;
+  border-radius: var(--radio);
+  box-shadow: var(--sombra-card);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  animation: fadeInUp 0.5s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+#form-act::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--color-primario), var(--color-acento));
+}
+
+#form-act label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85rem;
+  color: #334155;
+  font-weight: 600;
+  gap: 8px;
+}
+
+#form-act input {
+  padding: 12px 14px;
+  border: 1.5px solid var(--color-borde);
+  border-radius: 10px;
+  font-size: 0.95rem;
+  color: var(--color-texto);
+  background: #f8fafc;
+  font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+#form-act input:focus {
+  outline: none;
+  border-color: var(--color-secundario);
+  box-shadow: 0 0 0 4px rgba(29, 95, 168, 0.12);
+  background: #fff;
+}
+
+#form-act input:disabled {
+  background: #eef2f7;
+  color: var(--color-texto-suave);
+  cursor: not-allowed;
+}
+
+#form-act button[type="submit"] {
+  margin-top: 8px;
+  padding: 13px 18px;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
+  color: #fff;
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+  box-shadow: 0 8px 20px rgba(13, 59, 102, 0.25);
+}
+
+#form-act button[type="submit"]:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(13, 59, 102, 0.35);
+}
+
+#form-act button[type="submit"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+#msg {
+  max-width: 520px;
+  width: 100%;
+  margin: 20px 0 0;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  text-align: center;
+  display: none;
+  animation: fadeInUp 0.3s ease-out;
+}
+
+#msg:not(:empty) {
+  display: block;
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

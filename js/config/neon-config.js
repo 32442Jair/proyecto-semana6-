@@ -1,0 +1,2 @@
+import { neon } from 'https://esm.sh/@neondatabase/serverless';
+export const sql = neon('postgresql://neondb_owner:npg_QqGK2F3wDyXh@ep-dawn-violet-b412g2p5-pooler.c-6.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require');

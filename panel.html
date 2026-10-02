@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel de gestión — RENIEC</title>
+  <link rel="stylesheet" href="css/panel.css">
+</head>
+<body>
+  <header>
+    <h1>Panel de gestión — RENIEC</h1>
+    <button id="btn-salir">Cerrar sesión</button>
+  </header>
+
+  <section>
+    <h2>Registrar cita presencial</h2>
+    <form id="form-nuevo">
+      <input name="nombre" placeholder="Nombre" required>
+      <input name="dni" placeholder="DNI (8)" pattern="\d{8}" maxlength="8" required>
+      <input name="tipo_tramite" placeholder="Tipo de trámite" required>
+      <input name="sede" placeholder="Sede" required>
+      <button type="submit">Registrar</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>Todas las citas</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th><th>Código</th><th>Ciudadano</th><th>DNI</th>
+          <th>Trámite</th><th>Sede</th><th>Estado</th>
+          <th>Creado por</th><th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="cuerpo"></tbody>
+    </table>
+  </section>
+
+  <div id="modal-edit" hidden>
+    <form id="form-edit">
+      <input type="hidden" id="edit-id">
+      <input id="edit-nombre" placeholder="Nombre" required>
+      <input id="edit-dni" placeholder="DNI" pattern="\d{8}" maxlength="8" required>
+      <input id="edit-tipo_tramite" placeholder="Trámite" required>
+      <input id="edit-sede" placeholder="Sede" required>
+      <select id="edit-estado" required>
+        <option>registrado</option>
+        <option>atendido</option>
+        <option>rechazado</option>
+      </select>
+      <button type="button" id="btn-cancelar-edit">Cancelar</button>
+      <button type="submit">Guardar</button>
+    </form>
+  </div>
+
+  <script type="module" src="js/panel/panel.js"></script>
+</body>
+</html>

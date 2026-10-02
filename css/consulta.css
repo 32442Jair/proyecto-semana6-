@@ -1,0 +1,160 @@
+/* ================================
+   ESTILOS GENERALES
+================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f6f9;
+  color: #333;
+  padding: 40px;
+}
+
+/* ================================
+   TÍTULO
+================================ */
+
+h1 {
+  text-align: center;
+  color: #005baa;
+  margin-bottom: 30px;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+/* ================================
+   TABLA
+================================ */
+
+#tabla {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.10);
+}
+
+/* Encabezado */
+
+#tabla thead {
+  background: #005baa;
+  color: white;
+}
+
+#tabla th {
+  padding: 16px 12px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+/* Celdas */
+
+#tabla td {
+  padding: 14px 12px;
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 14px;
+}
+
+/* Filas */
+
+#tabla tbody tr {
+  transition: background 0.2s ease;
+}
+
+#tabla tbody tr:hover {
+  background: #eef6ff;
+}
+
+#tabla tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ================================
+   ENLACE EDITAR
+================================ */
+
+#tabla td a {
+  display: inline-block;
+  padding: 8px 14px;
+  background: #005baa;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: bold;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+#tabla td a:hover {
+  background: #003f7d;
+  transform: translateY(-1px);
+}
+
+/* ================================
+   ESTADOS
+================================ */
+
+#tabla td:nth-child(6) {
+  font-weight: bold;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 900px) {
+
+  body {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+  #tabla {
+    font-size: 13px;
+  }
+
+  #tabla th,
+  #tabla td {
+    padding: 10px 8px;
+  }
+}
+
+/* ================================
+   CELULARES
+================================ */
+
+@media (max-width: 700px) {
+
+  body {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 23px;
+    margin-bottom: 20px;
+  }
+
+  #tabla {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  #tabla th,
+  #tabla td {
+    padding: 10px;
+  }
+}

@@ -1,0 +1,136 @@
+/* Modal de edición */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(13, 59, 102, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 20px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal[hidden] {
+  display: none;
+}
+
+.modal-contenido {
+  background: #fff;
+  border-radius: 12px;
+  padding: 28px 32px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  animation: fadeInUp 0.3s ease-out;
+}
+
+.modal-contenido h3 {
+  margin: 0 0 20px;
+  color: #0d3b66;
+  font-size: 1.15rem;
+}
+
+.modal-contenido label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 14px;
+}
+
+.modal-contenido input,
+.modal-contenido select {
+  padding: 10px 12px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  font-family: inherit;
+  background: #f8fafc;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.modal-contenido input:focus,
+.modal-contenido select:focus {
+  outline: none;
+  border-color: #1d5fa8;
+  box-shadow: 0 0 0 3px rgba(29, 95, 168, 0.15);
+  background: #fff;
+}
+
+.modal-acciones {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.modal-acciones button {
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.15s ease, box-shadow 0.2s;
+}
+
+.modal-acciones button[type="submit"] {
+  background: linear-gradient(135deg, #0d3b66, #1d5fa8);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(13, 59, 102, 0.28);
+}
+
+.modal-acciones button[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(13, 59, 102, 0.38);
+}
+
+.modal-acciones button#btn-cancelar-edit {
+  background: #fff;
+  color: #0d3b66;
+  border: 1.5px solid #0d3b66;
+}
+
+.modal-acciones button#btn-cancelar-edit:hover {
+  background: #0d3b66;
+  color: #fff;
+}
+
+.mensaje {
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-top: 14px;
+  font-size: 0.9rem;
+  display: none;
+}
+
+.mensaje.mostrar {
+  display: block;
+  animation: fadeInUp 0.3s ease-out;
+}
+
+.mensaje.ok {
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+.mensaje.error {
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+/* Colores de estado en la tabla */
+.estado-registrado { color: #d97706; font-weight: 700; }
+.estado-atendido   { color: #059669; font-weight: 700; }
+.estado-rechazado  { color: #dc2626; font-weight: 700; }
+
+@keyframes fadeIn   { from { opacity: 0 } to { opacity: 1 } }
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear cuenta — RENIEC Perú</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body class="auth-page">
+
+  <!-- Panel lateral -->
+  <aside class="auth-side">
+    <div>
+      <div class="brand">
+        <span class="brand-logo">R</span>
+        RENIEC Perú
+      </div>
+      <h2>Crea tu cuenta ciudadana</h2>
+      <p>Regístrate una sola vez y accede a todos los servicios de agendamiento en línea.</p>
+      <ul>
+        <li>Registro rápido y seguro</li>
+        <li>Acceso a tu historial de citas</li>
+        <li>Seguimiento con código único</li>
+      </ul>
+    </div>
+    <p class="footnote">© 2026 RENIEC Perú — Proyecto académico</p>
+  </aside>
+
+  <!-- Formulario de registro -->
+  <main class="auth-form-side">
+    <div class="auth-card">
+      <h1>Crear cuenta</h1>
+      <p class="subtitle">Completa tus datos para registrarte.</p>
+
+      <form id="form-registro" novalidate>
+        <label>Nombre completo
+          <input type="text" name="nombre" required minlength="3" placeholder="Ej: Jair Espinoza" autocomplete="name">
+        </label>
+        <label>Correo electrónico
+          <input type="email" name="correo" required placeholder="tucorreo@ejemplo.com" autocomplete="email">
+        </label>
+        <label>Contraseña
+          <input type="password" name="contrasena" required minlength="6" placeholder="Mínimo 6 caracteres" autocomplete="new-password">
+        </label>
+        <button type="submit">Crear cuenta</button>
+      </form>
+
+      <div id="msg-registro" class="auth-message"></div>
+
+      <div class="auth-divider">o</div>
+
+      <p class="auth-alt">
+        ¿Ya tienes cuenta? <a href="login.html">Iniciar sesión</a>
+        <a href="consulta.html">Ver mis citas</a>
+      </p>
+    </div>
+  </main>
+
+  <script type="module">
+    import { registrarUsuario } from './js/auth/auth.js';
+
+    const form = document.getElementById('form-registro');
+    const msg  = document.getElementById('msg-registro');
+    const btn  = form.querySelector('button[type="submit"]');
+
+    function mostrar(clase, texto) {
+      msg.className = 'auth-message show ' + clase;
+      msg.textContent = texto;
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const nombre     = form.nombre.value.trim();
+      const correo     = form.correo.value.trim();
+      const contrasena = form.contrasena.value;
+
+      // Validación cliente
+      if (nombre.length < 3) {
+        mostrar('error', 'El nombre debe tener al menos 3 caracteres.');
+        return;
+      }
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(correo)) {
+        mostrar('error', 'Ingresa un correo válido.');
+        return;
+      }
+      if (contrasena.length < 6) {
+        mostrar('error', 'La contraseña debe tener al menos 6 caracteres.');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Creando cuenta…';
+
+      try {
+        await registrarUsuario(nombre, correo, contrasena);
+        mostrar('ok', 'Cuenta creada correctamente. Redirigiendo al login…');
+        setTimeout(() => {
+          window.location.href = 'login.html';
+        }, 1200);
+      } catch (err) {
+        // Error típico: correo duplicado (UNIQUE)
+        if (err.message && err.message.includes('duplicate')) {
+          mostrar('error', 'Ese correo ya está registrado. Intenta iniciar sesión.');
+        } else {
+          mostrar('error', 'Error al crear cuenta: ' + err.message);
+        }
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Crear cuenta';
+      }
+    });
+  </script>
+</body>
+</html>

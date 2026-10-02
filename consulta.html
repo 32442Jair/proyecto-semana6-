@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mis citas — RENIEC</title>
+  <link rel="stylesheet" href="css/consulta.css">
+</head>
+<body>
+  <h1>Mis citas agendadas</h1>
+  <table id="tabla">
+    <thead>
+      <tr>
+        <th>Código</th><th>Ciudadano</th><th>DNI</th>
+        <th>Trámite</th><th>Sede</th><th>Estado</th><th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="cuerpo"></tbody>
+  </table>
+
+  <script type="module" src="js/consulta/consulta.js"></script>
+  <script type="module">
+    import { listarMisRegistros } from './js/consulta/consulta.js';
+    const filas = await listarMisRegistros();
+    const cuerpo = document.getElementById('cuerpo');
+    cuerpo.innerHTML = filas.map(f => `
+      <tr>
+        <td>${f.codigo_seguimiento}</td>
+        <td>${f.nombre_ciudadano}</td>
+        <td>${f.dni}</td>
+        <td>${f.tipo_tramite}</td>
+        <td>${f.sede}</td>
+        <td>${f.estado}</td>
+        <td>${f.estado === 'registrado'
+              ? `<a href="actualizar.html?id=${f.id}">Editar</a>`
+              : '—'}</td>
+      </tr>`).join('');
+  </script>
+</body>
+</html>
